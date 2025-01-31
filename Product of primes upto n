@@ -1,0 +1,28 @@
+//Constraints 1<n<70 for input.
+
+// Calculates gcd of updated product and the current number to calculate successive primes.
+import java.util.": 
+class Main { 
+public static void main(String[] args) { 
+Scanner sc-new Scanner(System.in); 
+int n=sc.nextInt(); 
+int res-productOfPrimes(n); 
+System.out.println("The product of primes upto 
+n is: "+res); 
+} 
+static int gcd(int a, int b){ 
+if(a=0){ 
+return b; 
+} 
+else{ 
+return gcd(b%a,a); 
+} 
+static int productOfPrimes (int n){ 
+int prod-2; 
+for(int 1-3;1=n;i++){ 
+if(gcd(prod, i)=1){ 
+prod-prod*i; 
+} 
+} 
+return prod:
+}
