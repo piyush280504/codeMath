@@ -1,0 +1,34 @@
+class Solution {
+    // Function to find if there is a celebrity in the party or not.
+    public int celebrity(int mat[][]) {
+        int n=mat.length;
+        int[] sumArrayOrig=new int[n];
+        for(int i=0;i<n;i++){
+            int sum=0;
+            for(int j=0;j<n;j++){
+                sum+=mat[i][j];
+            }
+            sumArrayOrig[i]=sum;
+        }
+        int[][] res=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                res[j][i]=mat[i][j];
+            }
+        }
+        int[] sumArrayNew=new int[n];
+        for(int i=0;i<n;i++){
+            int sum1=0;
+            for(int j=0;j<n;j++){
+                sum1+=res[i][j];
+            }
+            sumArrayNew[i]=sum1;
+        }
+        for(int i=0;i<n;i++){
+            if(sumArrayOrig[i]==0 && sumArrayNew[i]==n-1){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
