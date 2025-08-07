@@ -25,7 +25,7 @@ class Solution {
         int fast = calculateSumOfPrimes(n);
         while (slow != fast) {
             slow = calculateSumOfPrimes(slow);
-            fast = calculateSumOfPrimes(calculateSumOfPrimes(fast));
+            fast = calculateSumOfPrimes(fast);
         }
 
         return slow;
