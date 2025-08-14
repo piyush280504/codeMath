@@ -1,4 +1,4 @@
-// I used Floyd fast and slow pointers to repeatedly replace number with sum of prime factors until slow==fast
+// I used Floyd fast and slow pointers to repeatedly replace number with sum of prime factors until slow equals fast.
 
 class Solution {
     public static int calculateSumOfPrimes(int n) {
