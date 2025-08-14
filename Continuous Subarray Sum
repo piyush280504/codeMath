@@ -2,7 +2,7 @@
 //The logic is to calculate a prefix array, and using a set to add remainders.
 //Key observation is that sum of a subarray starting from say 2 to 5 is sum of subarray from 0 to 5 minus the sum of subarray from 0 to 2, exclusing 2.
 //So we can just check for which prefix indices i and j, (prefix[j]-prefix[i])%k==0 which means prefix[j]%k==0 and prefix[i]%k==0
-// This is classic prefix problem and modulo logic inspired by the Two Sum Problem that stores complements in a HashMap.
+// This is classic prefix sum problem and modulo logic inspired by the Two Sum Problem that stores complements in a HashMap.
 class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
         if(nums.length<2){
