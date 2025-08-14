@@ -1,0 +1,29 @@
+//LEETCODE 523. Continuous Subarray Sum
+//The logic is to calculate a prefix array, and using a set to add remainders.
+//Key observation is that sum of a subarray starting from say 2 to 5 is sum of subarray from 0 to 5 minus the sum of subarray from 0 to 2, exclusing 2.
+//So we can just check for which prefix indices i and j, (prefix[j]-prefix[i])%k==0 which means prefix[j]%k==0 and prefix[i]%k==0
+// This is classic prefix problem and modulo logic inspired by the Two Sum Problem that stores complements in a HashMap.
+class Solution {
+    public boolean checkSubarraySum(int[] nums, int k) {
+        if(nums.length<2){
+            return false;
+        }
+        else{
+            int[] prefix=new int[nums.length];
+            prefix[0]=nums[0];
+            for(int i=1;i<nums.length;i++){
+                prefix[i]=prefix[i-1]+nums[i];
+            }
+            Set<Integer> set=new HashSet<>();
+            set.add(0);
+            for(int i=1;i<nums.length;i++){
+                int rem = Math.floorMod(prefix[i], Math.abs(k));
+                if(set.contains(rem)){
+                    return true;
+                }
+                set.add(Math.floorMod(prefix[i-1], Math.abs(k)));
+            }
+        }
+        return false;
+    }
+}
