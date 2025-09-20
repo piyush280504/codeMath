@@ -1,0 +1,54 @@
+//This code does not pass the last three test cases on LeetCode but builds mathematical intuition for the standard slding Window solution.
+//This uses the fact that the minimum window will always start and end with any character (possibly distinct or same) from the target string.
+
+class Solution {
+    public String minWindow(String s, String t) {
+        int s_length = s.length();
+        int t_length = t.length();
+        if (s_length < t_length) return "";
+
+        HashMap<Character, Integer> need = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            need.put(c, need.getOrDefault(c, 0) + 1);
+        }
+
+        java.util.List<Integer> indices = new java.util.ArrayList<>();
+        for (int i = 0; i < s_length; i++) {
+            if (need.containsKey(s.charAt(i))) {
+                indices.add(i);
+            }
+        }
+
+        int minLen = Integer.MAX_VALUE;
+        String result = "";
+
+        for (int i = 0; i < indices.size(); i++) {
+            int start = indices.get(i);
+            HashMap<Character, Integer> freq = new HashMap<>();
+
+            for (int j = i; j < indices.size(); j++) {
+                int end = indices.get(j);
+                char c = s.charAt(end);
+                freq.put(c, freq.getOrDefault(c, 0) + 1);
+
+                if (covers(freq, need)) {
+                    int windowLen = end - start + 1;
+                    if (windowLen < minLen) {
+                        minLen = windowLen;
+                        result = s.substring(start, end + 1);
+                    }
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private boolean covers(HashMap<Character, Integer> freq, HashMap<Character, Integer> need) {
+        for (char c : need.keySet()) {
+            if (freq.getOrDefault(c, 0) < need.get(c)) return false;
+        }
+        return true;
+    }
+}
