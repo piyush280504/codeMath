@@ -1,4 +1,4 @@
-//This code does not pass the last three test cases on LeetCode but builds mathematical intuition for the standard slding Window solution.
+//This code does not pass the last three test cases on LeetCode but builds mathematical intuition for the standard sliding Window+hashmap solution.
 //This uses the fact that the minimum window will always start and end with any character (possibly distinct or same) from the target string.
 
 class Solution {
